@@ -1,0 +1,30 @@
+.sidenav{
+    display: grid;
+    justify-content: start;
+   
+   
+    width: 200px;
+    height:100%;
+    background: #00807f;
+}
+
+.link{
+    margin-top: 30px;
+    margin-bottom: 25px;
+    margin-left: 20px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-radius:10rem;
+}
+.Bottom{
+    padding-bottom: 10px;
+}
+
+.link:hover{
+    color:black;
+    background-color: white;
+}

@@ -1,0 +1,19 @@
+.button {
+    position: relative;
+    left:20rem;  
+    margin: 0 10px;
+    padding: 10px;
+    font-size: 14px;
+    color: #6c6777;
+    background-color: #fff;
+    border:1px solid #3f3fe7;
+    cursor: pointer;
+    width: 120px;
+    border-radius: 5px;
+    margin-top: 0px;
+  }
+  
+  .button.selected {
+    color: #FFF;
+    background-color: #6c6777;
+  }

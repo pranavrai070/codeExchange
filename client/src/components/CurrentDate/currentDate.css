@@ -1,0 +1,14 @@
+.date{
+    display: flex;
+    justify-content: center;
+}
+
+.date input{
+    margin-left: 10px;
+    height: 20px;
+}
+
+.date h1{
+    font-size: 20px;
+    font-family:cursive;
+}
