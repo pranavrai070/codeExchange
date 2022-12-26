@@ -37,6 +37,7 @@ const SignUp = () => {
     } else {
       dispatch(signin(form, history));
     }
+    history.push('/');
   };
 
   // const googleSuccess = async (res) => {

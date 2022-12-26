@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {useSelector} from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import {Form,Button,Row,Col} from 'react-bootstrap'
 import { addTask } from '../../actions/tasks'
 import {useDispatch} from 'react-redux'
@@ -12,6 +13,7 @@ const TaskForm = () => {
   const [taskname,setTaskname]= useState("")
   const [to,setTo] = useState("")
   const dispatch =useDispatch();
+  const history = useHistory();
 
   // const date = useSelector(state=>state.user.date)
   // const user = useSelector(state=>state.user.user)
@@ -56,25 +58,25 @@ const TaskForm = () => {
         to:to
       }));
       console.log(user);
+      history.push('/personaltask');
     clear();
   }
 
 
   return (
-    <Form className='taskform' onSubmit={handleSubmit}>
+    <Form className='taskform'  onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
-        <Form.Label>Task</Form.Label>
         <Col sm={12}>
-        <Form.Control className='mb-3' type="text" placeholder="Enter the Task" value={taskname} onChange={onTasknameChange} />
+        <Form.Control className='mb-3' size="lg" type="text" placeholder="Enter the Task" value={taskname} onChange={onTasknameChange} />
         </Col>
         <Row>
         <Col sm={12}>
-        <Button variant="outline-success" type="submit" onClick={onForMeHandler}>
+        <Button variant="outline-success" size="lg" type="submit" onClick={onForMeHandler}>
         For Me
       </Button>
       </Col>
         <Col sm={12}>
-        <Button variant="outline-info" type="button" className='mt-3' onClick={onForOtherButton}>
+        <Button variant="outline-info" type="button" size="lg" className='mt-3' onClick={onForOtherButton}>
         For Other
       </Button>
       </Col>
@@ -82,9 +84,9 @@ const TaskForm = () => {
       {flag&&
       <>
       <Col sm={12}>
-        <Form.Control className='mt-3' type="email" placeholder="Enter the Email" value={to} onChange={onUsernameChange} />
+        <Form.Control className='mt-3' type="email" size="lg" placeholder="Enter the Email" value={to} onChange={onUsernameChange} />
         </Col>
-        <Button variant="warning" type="submit" className='mt-3'>
+        <Button variant="warning" type="submit" size="lg" className='mt-3'>
         Save
       </Button>
       </>

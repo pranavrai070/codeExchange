@@ -16,6 +16,11 @@ export const ACTIVE_TODOS = 'Active Todos';
 export const DONE_TODOS = 'Done Todos';
 export const TABS = [PENDING_TODOS, ACTIVE_TODOS, DONE_TODOS];
 
+export const TOGGLE_DONE = 'TOGGLE_DONE';
+export const TOGGLE_PENDING = 'TOGGLE_PENDING';
+export const TOGGLE_ACTIVE = 'TOGGLE_ACTIVE';
+
+
 export const AUTH = 'AUTH';
 export const LOGOUT = 'LOGOUT';
 

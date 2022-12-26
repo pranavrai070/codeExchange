@@ -15,7 +15,7 @@ const CurrentDate = () => {
 
    
     <div className="date">
-      <h1>{currentDates}</h1>
+      <p className='headDate'>{currentDates}</p>
       <input type='date' onChange={datePickHandler}/>
     </div>
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 import CurrentDate from '../components/CurrentDate/CurrentDate'
-import MyTask from '../components/Tasks/MyTask/MyTask'
+import MyTaskList from '../components/Tasks/MyTaskList/MyTaskList'
 
 
 const PersonalTask = () => {
@@ -8,7 +8,7 @@ const PersonalTask = () => {
     <div>
       {/* <Navbar/> */}
       <CurrentDate/>
-      <MyTask/>
+      <MyTaskList/>
     </div>
   )
 }

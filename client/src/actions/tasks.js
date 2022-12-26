@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE,TOGGLE_TAB } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE,TOGGLE_TAB,TOGGLE_DONE,TOGGLE_ACTIVE,TOGGLE_PENDING } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
 export const getAllTodos = () => async (dispatch) => {
@@ -21,9 +21,9 @@ export const addTask = (post) => async (dispatch) => {
   }
 };
 
-export const updateTodo = (id, post) => async (dispatch) => {
+export const updateTodo = (id, task) => async (dispatch) => {
   try {
-    const { data } = await api.updatePost(id, post);
+    const { data } = await api.updateTodo(id, task);
 
     dispatch({ type: UPDATE, payload: data });
   } catch (error) {
@@ -34,7 +34,7 @@ export const updateTodo = (id, post) => async (dispatch) => {
 
 export const deleteTask = (id) => async (dispatch) => {
   try {
-    await await api.deleteTask(id);
+     await api.deleteTask(id);
 
     dispatch({ type: DELETE, payload: id });
   } catch (error) {
@@ -61,32 +61,35 @@ export const dateTask=(data)=>async(dispatch)=>{
 }
 
 
-export const toActive=(taskname)=>async(dispatch)=>{
+export const toggleActive=(id)=>async(dispatch)=>{
   try{
-      // const res = await axios.post(`${API_URL}/toggleToActive`)
-      // dispatch({type:"CHANGE_TO_ACTIVE", payLoad:taskname});
-  }catch(error){
-      console.log("ERROR")
-  }
+    const {data}=await api.toggleDone(id);
+
+    dispatch({type:TOGGLE_ACTIVE,payload:data});
+}catch(error){
+    console.log(error);
+}
 }
 
 // Status Change To pending
-export const toPending=(taskname)=>async(dispatch)=>{
+export const togglePending=(id)=>async(dispatch)=>{
   try{
-      // const res = await axios.post(`${API_URL}/toggleToPending`)
-      // dispatch({type:"CHANGE_TO_PENDING", payLoad:taskname});
-  }catch(error){
-      console.log("ERROR")
-  }
+    const {data}=await api.toggleDone(id);
+
+    dispatch({type:TOGGLE_PENDING,payload:data});
+}catch(error){
+    console.log(error);
+}
 }
 
 // Status Change To Done
-export const toDone=(taskname)=>async(dispatch)=>{
+export const toggleDone=(id)=>async(dispatch)=>{
   try{
-      // const res = await axios.post(`${API_URL}/toggleToDone`)
-      // dispatch({type:"CHANGE_TO_DONE", payLoad:taskname});
+      const {data}=await api.toggleDone(id);
+
+      dispatch({type:TOGGLE_DONE,payload:data});
   }catch(error){
-      console.log("ERROR")
+      console.log(error);
   }
 }
 

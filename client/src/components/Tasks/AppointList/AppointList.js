@@ -1,18 +1,18 @@
 import React from 'react';
 import { useEffect } from 'react';
 
-import { deleteTask, getAllTodos } from '../../actions/tasks';
-import { PENDING_TODOS, DONE_TODOS, ACTIVE_TODOS } from '../../constants/actionTypes';
+import { deleteTask, getAllTodos } from '../../../actions/tasks';
+import { PENDING_TODOS, DONE_TODOS, ACTIVE_TODOS } from '../../../constants/actionTypes';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 
 // component
-import Task from './Task/Task';
-import Tabs from '../Tabs/Tabs';
+import AppointTask from './Task/AppointTask';
+import Tabs from '../../Tabs/Tabs';
 
 
-export const TaskList = () => {
+export const AppointList = () => {
 
     const dispatch = useDispatch();
 
@@ -24,9 +24,15 @@ export const TaskList = () => {
     }, [])
 
     const getTodos = () => {
-        return todos;
+        if (currentTab === PENDING_TODOS) {
+            return todos.filter(todo => todo.pending)
+        } else if (currentTab === ACTIVE_TODOS) {
+            return todos.filter(todo => todo.active)
+        } else if (currentTab === DONE_TODOS) {
+            return todos.filter(todo => todo.done)
+        }
     }
-    console.log(todos);
+
 
     // const removeDoneTodos = () => {
     //     todos.forEach(({ done, _id }) => {
@@ -54,7 +60,7 @@ export const TaskList = () => {
             <ul>
                 { 
                     getTodos().map(todo => (
-                        <Task 
+                        <AppointTask 
                             key={todo._id}
                             todo={todo}
                         />
@@ -65,4 +71,4 @@ export const TaskList = () => {
     )
 }
 
-export default TaskList;
+export default AppointList;

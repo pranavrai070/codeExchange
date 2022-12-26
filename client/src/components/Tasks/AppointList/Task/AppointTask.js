@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
 
-import { deleteTask,updateTodo } from "../../../actions/tasks";
+import { deleteTask,updateTodo } from "../../../../actions/tasks";
 import 'font-awesome/css/font-awesome.min.css';
 import { useDispatch } from "react-redux";
-import './task.css';
+import '../../task.css';
 
-const Task = ({ todo }) => {
+const AppointTask = ({ todo }) => {
 
     const [editing, setEditing] = useState(false);
     const [text, setText] = useState(todo?.data);
@@ -48,4 +48,4 @@ const Task = ({ todo }) => {
     )
 }
 
-export default Task;
+export default AppointTask;

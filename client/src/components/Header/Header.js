@@ -39,8 +39,8 @@ const Header = () => {
 
   return (
     <>
-      <Navbar bg="light" variant="light" className='mt-4'>
-        <Container>
+      <Navbar bg="light" variant="light" className='mt-4' expand="lg">
+        
           <Navbar.Brand href="/">
             <img
               alt=""
@@ -49,43 +49,42 @@ const Header = () => {
               height="60"
               className="d-inline-block"
             />{' '}
-            Todo List MetaMix
+            Todo List
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <div>
+          <>
             {user?.result?(
               <Navbar.Collapse id="basic-navbar-nav">
-              <Nav variant='pills' className="me-auto" defaultActiveKey="#home">
+              <Nav variant='' className="me-auto">
                 <Nav.Item>
-                <Nav.Link href="#home">Task Form</Nav.Link>
+                <Nav.Link href="/tasks">Task Form</Nav.Link>
                 </Nav.Item>
 
                 <Nav.Item>
-                <Nav.Link href="#personal">Personal Task</Nav.Link>
+                <Nav.Link href="/personaltask" eventKey="link-1">Personal Task</Nav.Link>
                 </Nav.Item>
 
                 <Nav.Item>
-                <Nav.Link href="#Taskforme">Tasks for Me</Nav.Link>
+                <Nav.Link href="/assigntask" eventKey="link-2">Tasks for Me</Nav.Link>
                 </Nav.Item>
 
                 <Nav.Item>
-                <Nav.Link href="#taskforothers">Tasks for Other</Nav.Link>
+                <Nav.Link href="/assignedtask" eventKey="link-3">Tasks for Other</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Navbar.Collapse>
             ):(null)}
-          </div>
-          <div>
+          </>
+          <>
             {user?.result?(
               <div>
-             <Button variant="danger"
+             <Button variant="danger" className='authbtn'
              onClick={logout}>Logout</Button>
              </div>
             ):(
-            <Button component={Link} to="/auth" variant="success" >Sign In</Button>
+            <Button component={Link} to="/auth" variant="success" className='authbtn' >Sign In</Button>
             )}
-          </div>
-        </Container>
+          </> 
       </Navbar>
    </>
   );

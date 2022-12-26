@@ -25,7 +25,7 @@ const App=()=> {
             <Route path='/assigntask' exact component={() => (!user ? <Auth /> : <AssignTask/>)}/>
             <Route path='/assignedtask' exact component={() => (!user ? <Auth /> : <AssignedTask/>)}/>
           </Switch>
-        </Container>
+          </Container>
       </BrowserRouter>
   );
 }

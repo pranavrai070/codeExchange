@@ -1,6 +1,6 @@
 import React from 'react'
  
-import Appointed from '../components/Tasks/Appointed/Appointed'
+import AppointedList from '../components/Tasks/AppointedList/AppointedList'
 import CurrentDate from '../components/CurrentDate/CurrentDate'
 import Navbar from '../components/Navbar/SideBar'
 const AssignedTask = () => {
@@ -8,7 +8,7 @@ const AssignedTask = () => {
     <div>
       {/* <Navbar/> */}
       <CurrentDate/>
-      <Appointed/>
+      <AppointedList/>
     </div>
   )
 }
