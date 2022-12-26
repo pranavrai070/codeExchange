@@ -2,14 +2,13 @@ import Todo from '../model/Todo.js';
 import User from '../model/User.js';
 
 export const addTodo = async (request, response) => {
-    // console.log(request.body);
-    const toId=User.findOne({email:request.body.to});
+    console.log(request.body);
     try {
         const newTodo = await Todo.create({
             data: request.body.data,
             createdAt: new Date().toISOString(),
             to:request.body.to,
-            by:request.userId
+            by:request.body.to
         });
         await newTodo.save();
 
@@ -19,11 +18,12 @@ export const addTodo = async (request, response) => {
     }
 }
 
-export const getMyTodos = async (request, response) => {
-    const by=request.userId;
+export const getAllTodos = async (request, response) => {
+    
     try {
-        const todos = await Todo.find({by}).sort({ 'createdAt': -1 });
+        const todos = await Todo.find({}).sort({ 'createdAt': -1 });
         return response.status(200).json(todos);
+    
         
     } catch (error) {
         return response.status(500).json(error.message);
@@ -52,15 +52,17 @@ export const getAssignedTodos = async (request, response) => {
 
 
 
-export const toggleDone = async (request, response) => {
+export const toDone = async (request, response) => {
     try {
-        const todoRef = await Todo.findById(request.params.id);
-        // console.log(request.params);
-        // console.log(todoRef);
+        // const todoRef = await Todo.findById(request.params.id);
+        // // console.log(request.params);
+        // // console.log(todoRef);
 
         const todo = await Todo.findOneAndUpdate(
             { _id: request.params.id },
-            {done:!todoRef.done}
+            {done:true},
+            {pending:false},
+            {active:false}
         )
         await todo.save();
         
@@ -70,13 +72,14 @@ export const toggleDone = async (request, response) => {
     }
 }
 
-export const toggleActive = async (request, response) => {
+export const toActive = async (request, response) => {
     try {
-        const todoRef = await Todo.findById(request.params.id);
-
+        
         const todo = await Todo.findOneAndUpdate(
             { _id: request.params.id },
-            { active:!todoRef.active }
+            { active:true },
+            {pending:false},
+            {done:false}
         )
 
         await todo.save();
@@ -87,13 +90,15 @@ export const toggleActive = async (request, response) => {
     }
 }
 
-export const togglePending = async (request, response) => {
+export const toPending = async (request, response) => {
     try {
-        const todoRef = await Todo.findById(request.params.id);
+        // const todoRef = await Todo.findById(request.params.id);
 
         const todo = await Todo.findOneAndUpdate(
             { _id: request.params.id },
-            { pending:!todoRef.pending }
+            { pending:true },
+            {active:false},
+            {done:false}
         )
 
         await todo.save();

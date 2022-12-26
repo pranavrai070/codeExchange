@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:8000' });
+const API = axios.create({ baseURL: 'http://localhost:9000' });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
@@ -15,11 +15,11 @@ export const addTask = (newPost) => API.post('/tasks/addtask', newPost);
 
 export const updateTodo = (id, task) => API.put(`/tasks/todos/${id}`,task);
 
-export const toggleDone = (id) => API.get(`/tasks/todos/${id}`);
+export const toggleDone = (id) => API.put(`/tasks/todos/${id}`);
 
-export const togglePending = (id) => API.get(`/tasks/todos/${id}`);
+export const togglePending = (id) => API.put(`/tasks/todos/${id}`);
 
-export const toggleActive = (id) => API.get(`/tasks/todos/${id}`);
+export const toggleActive = (id) => API.put(`/tasks/todos/${id}`);
 
 
 export const deleteTask = (id) => API.delete(`/tasks/todos/${id}`);

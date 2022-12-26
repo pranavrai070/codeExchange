@@ -11,6 +11,9 @@ const MyTask = ({ todo }) => {
 
     const [editing, setEditing] = useState(false);
     const [text, setText] = useState(todo?.data);
+    const[pending,setPending]=useState(false);
+    const [active,setActive]=useState();
+    const [done,setDone]=useState();
 
 
     const dispatch = useDispatch();

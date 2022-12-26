@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import Todo from '../model/Todo.js'
 
 import UserModal from "../model/User.js";
 
@@ -9,8 +10,15 @@ export const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    let date_ob = new Date();
+    let date = ("0" + date_ob.getDate()).slice(-2);
     const oldUser = await UserModal.findOne({ email });
+    const todos=await Todo.find({});
+    console.log(new Date().toDateString());
+    console.log(date);
 
+    
+    
     if (!oldUser) return res.status(404).json({ message: "User doesn't exist" });
 
     const isPasswordCorrect = await bcrypt.compare(password, oldUser.password);
@@ -19,7 +27,7 @@ export const login = async (req, res) => {
 
     const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, { expiresIn: "1h" });
 
-    res.status(200).json({ result: oldUser, token });
+    res.status(200).json({ result: todos, token });
   } catch (err) {
     res.status(500).json({ message: "Something went wrong" });
   }

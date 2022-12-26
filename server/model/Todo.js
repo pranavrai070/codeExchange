@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-
+let date_ob = new Date();
+let date = ("0" + date_ob.getDate()).slice(-2);
 
 const TodoSchema = new mongoose.Schema({
     data: {
@@ -15,8 +16,8 @@ const TodoSchema = new mongoose.Schema({
             default:true
         },
     createdAt: {
-        type: Date,
-        default: Date.now
+        type: String,
+        default: date
     },
     done: {
         type: Boolean,

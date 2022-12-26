@@ -25,6 +25,10 @@ const Header = () => {
     setUser(null);
   };
 
+  const signInHandler=()=>{
+    history.push('/auth');
+  }
+
   useEffect(() => {
     const token = user?.token;
 
@@ -38,8 +42,7 @@ const Header = () => {
   }, [location]);
 
   return (
-    <>
-      <Navbar bg="light" variant="light" className='mt-4' expand="lg">
+    <Navbar bg="light" variant="light" className='mt-4' expand="lg">
         
           <Navbar.Brand href="/">
             <img
@@ -82,11 +85,10 @@ const Header = () => {
              onClick={logout}>Logout</Button>
              </div>
             ):(
-            <Button component={Link} to="/auth" variant="success" className='authbtn' >Sign In</Button>
+            <Button component={Link} to="/auth" onClick={signInHandler} variant="success" className='authbtn' >Sign In</Button>
             )}
           </> 
       </Navbar>
-   </>
   );
 };
 
